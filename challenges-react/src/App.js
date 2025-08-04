@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import Post from "./posts.js";
+import NavBar from "./navbar.js";
+import BtnSideSec from "./btnSideSection.js";
+import "./App.css";
 
 function App() {
+  const bodyStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "start",
+    gap: 16,
+    width: "60%",
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <NavBar />
+      <div  style={{display: "flex", justifyContent: "center",}}>
+        <section style={bodyStyle}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+            width: "70%",
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+        </div>
+        <BtnSideSec />
+      </section>
+      </div>
+      
     </div>
   );
 }
