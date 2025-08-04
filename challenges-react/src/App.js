@@ -11,6 +11,8 @@ function App() {
     gap: 16,
     width: "60%",
   };
+  const defaultTiltle = 'This is the post title';
+  const defaultContent = "This is the post body";
   return (
     <div className="App">
       <NavBar />
@@ -24,13 +26,16 @@ function App() {
             width: "70%",
           }}
         >
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
+          <Post content={"Features: FrontEnd - BackEnd - AI - MobileApp"}>
+            <h3>20</h3>
+            <h3>M&H</h3>
+          </Post>
+          <Post title={"Hello World"} content={"This is the hello world article"}/>
+          <Post title={"Post 3"} content={"This is the body of post 3"}/>
+          <Post title={defaultTiltle} content={defaultContent}/>
+          <Post title={defaultTiltle} content={defaultContent}/>
+          <Post title={defaultTiltle} content={defaultContent}/>
+          <Post title={"Post 7"} content={"This is the body of post 7"}/>
         </div>
         <BtnSideSec />
       </section>

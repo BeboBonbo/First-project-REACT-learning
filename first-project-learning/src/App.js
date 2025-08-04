@@ -1,8 +1,11 @@
 import logo from "./logo.svg";
 import MyFirstComponent from "./MyFirstComponent"
+import Article from "./Article";
 import "./App.css";
 
 function App() {
+  const firstArticle = "I am a professional developer";
+  const secondArticle = `I am a trainee developer`;
   return (
     <div className="App">
       <header className="App-header">
@@ -12,7 +15,6 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <h1>Habiba Abdo Alzokm</h1>
-        <MyFirstComponent />
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -21,7 +23,19 @@ function App() {
         >
           Learn React
         </a>
-        <MyFirstComponent />
+        <Article personName="Ammar" email="Ammar@gamail.com" content={firstArticle}>
+          <h1>Hello World</h1>
+        </Article>
+        <Article personName="Habiba" email={"Habiba@gmail.com"} content={secondArticle}>
+          <div style={{background: "teal"}}>
+            <h2>Hello World</h2>
+            <p style={{background: "orange"}}>kasnldfkhvoiru lskldnjfhgiueur  sdkghurahioej</p>
+          </div>
+        </Article>
+        <Article personName={"M&H"} email="M&H@gmail.com">
+          <h5>This is the content</h5>
+          <hr></hr>
+        </Article>
       </header>
     </div>
   );
