@@ -18,14 +18,18 @@ function Btn({ btnTitle, children }) {
   };
   return (
     <div>
-      <button
-        style={btnStyle}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {btnTitle}
-        {children}
-      </button>
+      {btnTitle == null || btnTitle == "" ? (
+        <div></div>
+      ) : (
+        <button
+          style={btnStyle}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {btnTitle}
+          {children}
+        </button>
+      )}
     </div>
   );
 }
@@ -45,20 +49,26 @@ export default function BtnSideSec() {
       <Btn btnTitle={"الأكثر قراءة"}>
         <img
           src={btnFlower}
-          style={{ height: "75px", width: "125px", borderRadius: "5px"}}
+          style={{ height: "75px", width: "125px", borderRadius: "5px" }}
         />
       </Btn>
       <Btn btnTitle={"مقلات مميزة"}>
-      
-        <div style={{display: "flex", margin: "1rem 5px", justifyContent: "center", alignItems: "center"}}>
-          <i className="fa-solid fa-star" style={{color: "#FFD43B"}}></i>
-          <i className="fa-solid fa-star" style={{color: "#FFD43B"}}></i>
-          <i className="fa-solid fa-star" style={{color: "#FFD43B"}}></i>
+        <div
+          style={{
+            display: "flex",
+            margin: "1rem 5px",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <i className="fa-solid fa-star" style={{ color: "#FFD43B" }}></i>
+          <i className="fa-solid fa-star" style={{ color: "#FFD43B" }}></i>
+          <i className="fa-solid fa-star" style={{ color: "#FFD43B" }}></i>
         </div>
-          
-          <img src={flowerBtn} style={{  width: "100px", borderRadius: "5px"}} />
-        
+
+        <img src={flowerBtn} style={{ width: "100px", borderRadius: "5px" }} />
       </Btn>
+      <Btn btnTitle={""} />
     </div>
   );
 }
