@@ -6,6 +6,15 @@ import "./App.css";
 function App() {
   const firstArticle = "I am a professional developer";
   const secondArticle = `I am a trainee developer`;
+  const tasks = [
+    {uniqueNum:1, title: "doing my homeworks"},
+    {uniqueNum:2, title: "reading a book"},
+    {uniqueNum:3, title: "studying"},
+    {uniqueNum:4, title: "cleaning my room"},
+  ]
+  const myTasksList = tasks.map((task) =>{
+    return(<li key={task.uniqueNum}>{task.title}</li>);
+  });
   return (
     <div className="App">
       <header className="App-header">
@@ -15,14 +24,9 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <h1>Habiba Abdo Alzokm</h1>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>
+          <ul>{myTasksList}</ul>
+        </div>
         <Article personName="Ammar" email="Ammar@gamail.com" content={firstArticle}>
           <h1>Hello World</h1>
         </Article>
