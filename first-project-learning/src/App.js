@@ -1,25 +1,27 @@
 import logo from "./logo.svg";
-import MyFirstComponent from "./MyFirstComponent"
-import Article from "./Article";
+// import MyFirstComponent from "./MyFirstComponent"
+// import Article from "./Article";
 import "./App.css";
+import MyButton from "./MyButton";
+import MyInput from "./MyInput";
 
 function App() {
-  const firstArticle = "I am a professional developer";
-  const secondArticle = `I am a trainee developer`;
-  const tasks = [
-    {uniqueNum:1, title: "doing my homeworks"},
-    {uniqueNum:2, title: "reading a book"},
-    {uniqueNum:3, title: "studying"},
-    {uniqueNum:4, title: "cleaning my room"},
-  ]
-  const myTasksList = tasks.map((task) =>{
-    return(<li key={task.uniqueNum}>{task.title}</li>);
-  });
+  // const firstArticle = "I am a professional developer";
+  // const secondArticle = `I am a trainee developer`;
+  // const tasks = [
+  //   {uniqueNum:1, title: "doing my homeworks"},
+  //   {uniqueNum:2, title: "reading a book"},
+  //   {uniqueNum:3, title: "studying"},
+  //   {uniqueNum:4, title: "cleaning my room"},
+  // ]
+  // const myTasksList = tasks.map((task) =>{
+  //   return(<li key={task.uniqueNum}>{task.title}</li>);
+  // });
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <MyFirstComponent />
+        {/* <MyFirstComponent />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -39,7 +41,9 @@ function App() {
         <Article personName={"M&H"} email="M&H@gmail.com">
           <h5>This is the content</h5>
           <hr></hr>
-        </Article>
+        </Article> */}
+        <MyButton />
+        <MyInput />
       </header>
     </div>
   );
