@@ -43,9 +43,57 @@ export default function BtnSideSec() {
     width: "30%",
     padding: "0 2rem",
   };
+
+  const categories = [
+    {
+      id: 1,
+      btnTitle: "جديدة",
+      child: (
+        <img
+          src={btnFlower}
+          style={{ height: "75px", width: "125px", borderRadius: "5px" }}
+        />
+      ),
+    },
+    {
+      id: 2,
+      btnTitle: "الأكثر قراءة",
+    },
+    {
+      id: 3,
+      btnTitle: "مقلات مميزة",
+      child: (
+        <>
+          <div
+            style={{
+              display: "flex",
+              margin: "1rem 5px",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <i className="fa-solid fa-star" style={{ color: "#FFD43B" }}></i>
+            <i className="fa-solid fa-star" style={{ color: "#FFD43B" }}></i>
+            <i className="fa-solid fa-star" style={{ color: "#FFD43B" }}></i>
+          </div>
+
+          <img
+            src={flowerBtn}
+            style={{ width: "100px", borderRadius: "5px" }}
+          />
+        </>
+      ),
+    },
+  ];
+  const categoriesList = categories.map((category) => {
+    return <Btn key={category.id} btnTitle={category.btnTitle} >
+      {category.child}
+    </Btn>;
+  });
   return (
     <div style={sideSecStyle}>
-      <Btn btnTitle={"جديدة"} />
+      {categoriesList}
+      {/* <Btn btnTitle={"جديدة"} />
       <Btn btnTitle={"الأكثر قراءة"}>
         <img
           src={btnFlower}
@@ -53,22 +101,9 @@ export default function BtnSideSec() {
         />
       </Btn>
       <Btn btnTitle={"مقلات مميزة"}>
-        <div
-          style={{
-            display: "flex",
-            margin: "1rem 5px",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <i className="fa-solid fa-star" style={{ color: "#FFD43B" }}></i>
-          <i className="fa-solid fa-star" style={{ color: "#FFD43B" }}></i>
-          <i className="fa-solid fa-star" style={{ color: "#FFD43B" }}></i>
-        </div>
-
-        <img src={flowerBtn} style={{ width: "100px", borderRadius: "5px" }} />
+        
       </Btn>
-      <Btn btnTitle={""} />
+      <Btn btnTitle={""} /> */}
     </div>
   );
 }

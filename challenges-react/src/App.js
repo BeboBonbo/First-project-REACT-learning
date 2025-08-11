@@ -13,8 +13,23 @@ function App() {
     gap: 16,
     width: "60%",
   };
-  const defaultTiltle = "This is the post title";
-  const defaultContent = "This is the post body";
+  const posts = [
+    {
+      id: 1,
+      title: "M&H",
+      content: "Features: FrontEnd - BackEnd - AI - MobileApp",
+    },
+    { id: 2, title: "Hello World", content: "This is the hello world article" },
+    { id: 3, title: "Post 3", content: "This is the body of post 3" },
+    { id: 4, title: "This is the post title", content: "This is the post body" },
+    { id: 5, title: "This is the post title", content: "This is the post body" },
+    { id: 6, title: "This is the post title", content: "This is the post body" },
+    { id: 7, title: "Post 7", content: "This is the body of post 7" },
+  ];
+  const postsComponents = posts.map((post) => {
+    return <Post key={post.id} title={post.title} content={post.content} />;
+  });
+
   return (
     <div className="App">
       <NavBar />
@@ -28,19 +43,7 @@ function App() {
               width: "70%",
             }}
           >
-            <Post content={"Features: FrontEnd - BackEnd - AI - MobileApp"}>
-              <h3>20</h3>
-              <h3>M&H</h3>
-            </Post>
-            <Post
-              title={"Hello World"}
-              content={"This is the hello world article"}
-            />
-            <Post title={"Post 3"} content={"This is the body of post 3"} />
-            <Post title={defaultTiltle} content={defaultContent} />
-            <Post title={defaultTiltle} content={defaultContent} />
-            <Post title={defaultTiltle} content={defaultContent} />
-            <Post title={"Post 7"} content={"This is the body of post 7"} />
+            {postsComponents}
           </div>
           <AppSideMenu />
         </section>

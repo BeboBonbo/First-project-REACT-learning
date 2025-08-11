@@ -1,4 +1,4 @@
-export default function Post({title, content, children}) {
+export default function Post({title, content}) {
   const postStyle = {
     border: "4px solid #0b7372",
     padding: "0 7px",
@@ -6,7 +6,6 @@ export default function Post({title, content, children}) {
     return (
     <div style = {postStyle}>
       <h3>{title}</h3>
-      <h2>{children}</h2>
       <hr />
       <p>{content}</p>
     </div>
