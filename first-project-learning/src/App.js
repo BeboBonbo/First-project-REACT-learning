@@ -2,8 +2,9 @@ import logo from "./logo.svg";
 // import MyFirstComponent from "./MyFirstComponent"
 // import Article from "./Article";
 import "./App.css";
-import MyButton from "./MyButton";
-import MyInput from "./MyInput";
+// import MyButton from "./MyButton";
+// import MyInput from "./MyInput";
+import MyForm from "./MyForm"
 
 function App() {
   // const firstArticle = "I am a professional developer";
@@ -19,8 +20,8 @@ function App() {
   // });
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      {/* <header className="App-header"> */}
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
         {/* <MyFirstComponent />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -42,9 +43,10 @@ function App() {
           <h5>This is the content</h5>
           <hr></hr>
         </Article> */}
-        <MyButton />
-        <MyInput />
-      </header>
+        {/* <MyButton /> */}
+        {/* <MyInput /> */}
+      {/* </header> */}
+      <MyForm />
     </div>
   );
 }
