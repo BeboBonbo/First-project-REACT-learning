@@ -1,10 +1,11 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 // import MyFirstComponent from "./MyFirstComponent"
 // import Article from "./Article";
 import "./App.css";
 // import MyButton from "./MyButton";
 // import MyInput from "./MyInput";
-import MyForm from "./MyForm"
+import MyForm from "./MyForm";
+import { useState } from "react";
 
 function App() {
   // const firstArticle = "I am a professional developer";
@@ -18,11 +19,41 @@ function App() {
   // const myTasksList = tasks.map((task) =>{
   //   return(<li key={task.uniqueNum}>{task.title}</li>);
   // });
+  const [deviceNameInp, setDeviceNameInp] = useState("");
+  const [devices, setDevices] = useState([
+    "Iphone",
+    "Huawie",
+    "Samsung",
+    "Oppo",
+  ]);
+  const devicesList = devices.map((device) => {
+    return <li>{device}</li>;
+  });
+  function handleAddClick() {
+    setDevices([...devices, deviceNameInp]);
+  }
   return (
     <div className="App">
+      {devicesList}
+      <div>
+        <input
+          value={deviceNameInp}
+          onChange={(e) => {
+            setDeviceNameInp(e.target.value);
+          }}
+          type="text"
+        />
+        <button
+          onClick={() => {
+            handleAddClick();
+          }}
+        >
+          Add
+        </button>
+      </div>
       {/* <header className="App-header"> */}
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        {/* <MyFirstComponent />
+      {/* <img src={logo} className="App-logo" alt="logo" /> */}
+      {/* <MyFirstComponent />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -43,8 +74,8 @@ function App() {
           <h5>This is the content</h5>
           <hr></hr>
         </Article> */}
-        {/* <MyButton /> */}
-        {/* <MyInput /> */}
+      {/* <MyButton /> */}
+      {/* <MyInput /> */}
       {/* </header> */}
       <MyForm />
     </div>

@@ -2,12 +2,12 @@
 // import NavBar from "./navbar.js";
 // import BtnSideSec from "./btnSideSection.js";
 // import "./App.css";
-import Scoreboard from "./objectStateProblemInDocs";
+//! import Scoreboard from "./objectStateProblemInDocs";
 
 // const showCategories = true;
 
 function App() {
-  return <Scoreboard />;
+  //! return <Scoreboard />;
 
   // const bodyStyle = {
   //   display: "flex",
