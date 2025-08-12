@@ -21,14 +21,49 @@ function App() {
   // });
   const [deviceNameInp, setDeviceNameInp] = useState("");
   const [devices, setDevices] = useState([
-    "Iphone",
-    "Huawie",
-    "Samsung",
-    "Oppo",
+    { id: 1, name: "Iphone" },
+    { id: 2, name: "Huawie" },
+    { id: 3, name: "Samsung" },
+    { id: 4, name: "Oppo" },
   ]);
   const devicesList = devices.map((device) => {
-    return <li>{device}</li>;
+    return (
+      <li key={device.id}>
+        {device.name}
+        <button
+          onClick={() => {
+            handleDeleteClick(device.id);
+          }}
+        >
+          Delete
+        </button>
+        <button
+          onClick={() => {
+            handleEditClick(device.id);
+          }}
+        >
+          Edit
+        </button>
+      </li>
+    );
   });
+  function handleEditClick(id) {
+    const newDevices = devices.map((device) => {
+      if (device.id == id) {
+        let newDevice = { ...device, name: device.name + "0" };
+        return newDevice;
+      } else {
+        return device;
+      }
+    });
+    setDevices(newDevices)
+  }
+  function handleDeleteClick(id) {
+    const newDevices = devices.filter((device) => {
+      return device.id !== id;
+    });
+    setDevices(newDevices);
+  }
   function handleAddClick() {
     setDevices([...devices, deviceNameInp]);
   }
