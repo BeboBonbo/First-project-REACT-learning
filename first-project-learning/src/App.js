@@ -56,7 +56,7 @@ function App() {
         return device;
       }
     });
-    setDevices(newDevices)
+    setDevices(newDevices);
   }
   function handleDeleteClick(id) {
     const newDevices = devices.filter((device) => {
@@ -67,8 +67,17 @@ function App() {
   function handleAddClick() {
     setDevices([...devices, deviceNameInp]);
   }
+
+  const [count, setCount] = useState(0);
+  function handlePlusClick() {
+    setCount(count + 1);
+    setCount((newCount) => {
+      return newCount + 1;
+    });
+  }
   return (
     <div className="App">
+      <MyForm />
       {devicesList}
       <div>
         <input
@@ -86,6 +95,15 @@ function App() {
           Add
         </button>
       </div>
+      <h1>The count is: {count}</h1>
+      <button
+        onClick={() => {
+          handlePlusClick();
+        }}
+      >
+        +
+      </button>
+
       {/* <header className="App-header"> */}
       {/* <img src={logo} className="App-logo" alt="logo" /> */}
       {/* <MyFirstComponent />
@@ -112,7 +130,6 @@ function App() {
       {/* <MyButton /> */}
       {/* <MyInput /> */}
       {/* </header> */}
-      <MyForm />
     </div>
   );
 }
