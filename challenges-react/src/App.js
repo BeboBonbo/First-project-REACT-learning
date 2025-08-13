@@ -3,12 +3,13 @@
 // import BtnSideSec from "./btnSideSection.js";
 // import "./App.css";
 //! import Scoreboard from "./objectStateProblemInDocs";
+import ShoppingCart from "./UpdatingArrayInState"
 
 // const showCategories = true;
 
 function App() {
   //! return <Scoreboard />;
-
+  return(<ShoppingCart />);
   // const bodyStyle = {
   //   display: "flex",
   //   justifyContent: "center",
