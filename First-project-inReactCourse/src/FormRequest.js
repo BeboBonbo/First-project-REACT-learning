@@ -1,6 +1,7 @@
 // import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import Modal from "./Modal";
+import MyComponent from "./MyComponenty";
 
 export default function FormRequest() {
   const [loanInputs, setLoanInputs] = useState({
@@ -55,17 +56,7 @@ export default function FormRequest() {
         {/* <Container>This is Conatienr</Container>- */}
         <h1 style={{ margin: "0px", padding: "0px" }}>Request a Loan</h1>
         <hr style={inpStyle} />
-        <label style={labelStyle}>
-          Name:{" "}
-          <input
-            value={loanInputs.name}
-            onChange={(event) => {
-              setLoanInputs({ ...loanInputs, name: event.target.value });
-            }}
-            style={inpStyle}
-            type="text"
-          />
-        </label>
+        <MyComponent currentInputs={loanInputs} handleChange={setLoanInputs} value={loanInputs.name}/>
         <label style={labelStyle}>
           Phone number:{" "}
           <input
