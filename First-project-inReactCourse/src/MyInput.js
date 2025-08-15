@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { LoanInputContext } from "./contexts/LoanFormInputcontext";
+import { UserContext } from "./contexts/UserContext";
 
 export default function MyInput() {
   const inputContext = useContext(LoanInputContext);
@@ -12,12 +13,12 @@ export default function MyInput() {
     justifyContent: "center",
   };
 
-  const inpStyle = { width: "100%", border: "none"};
-
+  const inpStyle = { width: "100%", border: "none" };
+  const userData = useContext(UserContext);
   return (
     <>
       <label style={labelStyle}>
-        {inputContext.labelTitle}
+        {userData.name}'s {inputContext.labelTitle}
         <input
           value={inputContext.value}
           onChange={(event) => {

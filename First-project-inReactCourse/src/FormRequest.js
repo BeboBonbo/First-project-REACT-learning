@@ -1,17 +1,12 @@
 // import { styled } from "@mui/material/styles";
+import { useContext } from "react";
+import { UserContext } from "./contexts/UserContext";
 import { LoanInputContext } from "./contexts/LoanFormInputcontext";
 import { useState } from "react";
 import Modal from "./Modal";
 import MyComponent from "./MyComponenty";
 
 export default function FormRequest() {
-  const [loanInputs, setLoanInputs] = useState({
-    name: "",
-    phoneNumber: "",
-    age: "",
-    isEmployee: false,
-    salaryRange: "less than 500$",
-  });
   const [showModal, setShowModal] = useState(false);
   function handleFormSubmit(event) {
     event.preventDefault();
@@ -24,6 +19,15 @@ export default function FormRequest() {
     }
     setShowModal(true);
   }
+  const userData = useContext(UserContext);
+  const initialName = userData.name;
+  const [loanInputs, setLoanInputs] = useState({
+    name: initialName,
+    phoneNumber: "",
+    age: "",
+    isEmployee: false,
+    salaryRange: "less than 500$",
+  });
   const [errorMessage, setErrorMessage] = useState(null);
   const btnIsDisabled =
     loanInputs.name == "" ||
@@ -55,6 +59,7 @@ export default function FormRequest() {
       }}
       style={{ width: "45%" }}
     >
+      <h1 style={{ color: "white" }}>Hello {userData.name}</h1>
       <form
         style={{
           color: "white",
@@ -68,7 +73,7 @@ export default function FormRequest() {
           gap: "10px",
           borderRadius: "1rem",
           boxShadow: "0 10px 10px rgba(0, 0, 0, 0.4)",
-          boxSizing: "border-box"
+          boxSizing: "border-box",
         }}
       >
         {/* <Container>This is Conatienr</Container>- */}
