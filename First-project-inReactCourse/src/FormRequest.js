@@ -1,4 +1,5 @@
 // import { styled } from "@mui/material/styles";
+import { LoanInputContext } from "./contexts/LoanFormInputcontext";
 import { useState } from "react";
 import Modal from "./Modal";
 import MyComponent from "./MyComponenty";
@@ -67,26 +68,40 @@ export default function FormRequest() {
           gap: "10px",
           borderRadius: "1rem",
           boxShadow: "0 10px 10px rgba(0, 0, 0, 0.4)",
+          boxSizing: "border-box"
         }}
       >
         {/* <Container>This is Conatienr</Container>- */}
         <h1 style={{ margin: "0px", padding: "0px" }}>Request a Loan</h1>
         <hr style={inpStyle} />
-        <MyComponent
-          inputName="Name:"
-          handleChange={handleNameInputChange}
-          value={loanInputs.name}
-        />
-        <MyComponent
-          inputName="Phone Number:"
-          handleChange={handleNameInputChange}
-          value={loanInputs.phoneNumber}
-        />
-        <MyComponent
-          inputName="Age:"
-          handleChange={handleNameInputChange}
-          value={loanInputs.age}
-        />
+
+        <LoanInputContext.Provider
+          value={{
+            value: loanInputs.name,
+            handleChange: handleNameInputChange,
+            labelTitle: "Name:",
+          }}
+        >
+          <MyComponent />
+        </LoanInputContext.Provider>
+        <LoanInputContext.Provider
+          value={{
+            value: loanInputs.phoneNumber,
+            handleChange: handlePhoneNumberInputChange,
+            labelTitle: "Phone Number:",
+          }}
+        >
+          <MyComponent />
+        </LoanInputContext.Provider>
+        <LoanInputContext.Provider
+          value={{
+            value: loanInputs.age,
+            handleChange: handleAgeInputChange,
+            labelTitle: "Age:",
+          }}
+        >
+          <MyComponent />
+        </LoanInputContext.Provider>
         <label style={labelStyle}>
           Are you an employee?
           <input
