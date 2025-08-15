@@ -1,4 +1,4 @@
-export default function MyComponent({ value, handleChange, currentInputs }) {
+export default function MyComponent({ value, handleChange,  inputName}) { 
   
     const labelStyle = {
     width: "100%",
@@ -13,11 +13,11 @@ export default function MyComponent({ value, handleChange, currentInputs }) {
 
   return (
     <label style={labelStyle}>
-      Name:{" "}
+      {inputName}
       <input
         value={value}
         onChange={(event) => {
-          handleChange({ ...currentInputs, name: event.target.value });
+          handleChange(event.target.value );
         }}
         style={inpStyle}
         type="text"

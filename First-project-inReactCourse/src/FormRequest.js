@@ -15,15 +15,15 @@ export default function FormRequest() {
   function handleFormSubmit(event) {
     event.preventDefault();
     setErrorMessage(null);
-    const  {age, phoneNumber}= loanInputs;
-    if(age < 18 || age > 200) {
+    const { age, phoneNumber } = loanInputs;
+    if (age < 18 || age > 200) {
       setErrorMessage("The age is not allowed");
-    }else if (phoneNumber.length < 10 || phoneNumber.length > 12) {
-      setErrorMessage("Phone number format is incorrect")
+    } else if (phoneNumber.length < 10 || phoneNumber.length > 12) {
+      setErrorMessage("Phone number format is incorrect");
     }
     setShowModal(true);
-  };
-    const [errorMessage, setErrorMessage] = useState(null);
+  }
+  const [errorMessage, setErrorMessage] = useState(null);
   const btnIsDisabled =
     loanInputs.name == "" ||
     loanInputs.phoneNumber == "" ||
@@ -36,8 +36,24 @@ export default function FormRequest() {
     justifyContent: "center",
   };
   const inpStyle = { width: "100%", border: "none", height: "30px" };
+  function handleNameInputChange(value) {
+    setLoanInputs({ ...loanInputs, name: value });
+  }
+  function handlePhoneNumberInputChange(value) {
+    setLoanInputs({ ...loanInputs, phoneNumber: value });
+  }
+  function handleAgeInputChange(value) {
+    setLoanInputs({ ...loanInputs, age: value });
+  }
   return (
-    <div onClick={() => {if(showModal){setShowModal(false)}}} style={{width: "45%"}}>
+    <div
+      onClick={() => {
+        if (showModal) {
+          setShowModal(false);
+        }
+      }}
+      style={{ width: "45%" }}
+    >
       <form
         style={{
           color: "white",
@@ -56,28 +72,21 @@ export default function FormRequest() {
         {/* <Container>This is Conatienr</Container>- */}
         <h1 style={{ margin: "0px", padding: "0px" }}>Request a Loan</h1>
         <hr style={inpStyle} />
-        <MyComponent currentInputs={loanInputs} handleChange={setLoanInputs} value={loanInputs.name}/>
-        <label style={labelStyle}>
-          Phone number:{" "}
-          <input
-            value={loanInputs.phoneNumber}
-            onChange={(event) => {
-              setLoanInputs({ ...loanInputs, phoneNumber: event.target.value });
-            }}
-            style={inpStyle}
-          />
-        </label>
-        <label style={labelStyle}>
-          Age:{" "}
-          <input
-            value={loanInputs.age}
-            onChange={(e) => {
-              setLoanInputs({ ...loanInputs, age: e.target.value });
-            }}
-            style={inpStyle}
-            type="number"
-          />
-        </label>
+        <MyComponent
+          inputName="Name:"
+          handleChange={handleNameInputChange}
+          value={loanInputs.name}
+        />
+        <MyComponent
+          inputName="Phone Number:"
+          handleChange={handleNameInputChange}
+          value={loanInputs.phoneNumber}
+        />
+        <MyComponent
+          inputName="Age:"
+          handleChange={handleNameInputChange}
+          value={loanInputs.age}
+        />
         <label style={labelStyle}>
           Are you an employee?
           <input
@@ -118,7 +127,7 @@ export default function FormRequest() {
         >
           Submit
         </button>
-      < Modal errorMessage={errorMessage} isVisible={showModal}/>
+        <Modal errorMessage={errorMessage} isVisible={showModal} />
       </form>
     </div>
   );
