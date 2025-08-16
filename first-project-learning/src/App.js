@@ -6,7 +6,6 @@ import "./App.css";
 // import MyInput from "./MyInput";
 import MyForm from "./MyForm";
 import { useState } from "react";
-
 function App() {
   // const firstArticle = "I am a professional developer";
   // const secondArticle = `I am a trainee developer`;
@@ -103,7 +102,6 @@ function App() {
       >
         +
       </button>
-
       {/* <header className="App-header"> */}
       {/* <img src={logo} className="App-logo" alt="logo" /> */}
       {/* <MyFirstComponent />
