@@ -4,14 +4,16 @@
 // import "./App.css";
 //! import Scoreboard from "./objectStateProblemInDocs";
 //? import ShoppingCart from "./UpdatingArrayInState"
-import RequestTracker from "./repeatedUpdateOfArray";
+//* import RequestTracker from "./repeatedUpdateOfArray";
+import Content from './contextChallegeSollution/content'
 
 // const showCategories = true;
 
 function App() {
   //! return <Scoreboard />;
   //? return(<ShoppingCart />)
-  return(<RequestTracker />)
+  //* return(<RequestTracker />)
+  return <Content />
   // const bodyStyle = {
   //   display: "flex",
   //   justifyContent: "center",
