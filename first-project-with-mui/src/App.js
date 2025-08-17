@@ -15,8 +15,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <Material />
-        <GridTest />
-        <StackTest />
+        {/* <GridTest /> */}
+        {/* <StackTest /> */}
       </div>
     </ThemeProvider>
   );
