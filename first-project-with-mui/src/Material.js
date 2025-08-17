@@ -6,12 +6,14 @@ import { deepOrange, deepPurple } from "@mui/material/colors";
 import Checkbox from "@mui/material/Checkbox";
 import Slider from "@mui/material/Slider";
 import Chip from "@mui/material/Chip";
+import Container from '@mui/material/Container';
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function Material() {
   return (
     <>
+    <Container maxWidth="md">
       <Stack direction="row" spacing={2}>
         <Button
           color="primary"
@@ -34,6 +36,7 @@ export default function Material() {
         </Stack>
         <Checkbox {...label} />
       </Stack>
+      </Container>
       {/* <Stack direction="row" spacing={2}>
         <Avatar>H</Avatar>
         <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
