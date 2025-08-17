@@ -3,16 +3,18 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import { deepOrange, deepPurple } from "@mui/material/colors";
-import Checkbox from '@mui/material/Checkbox';
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+import Checkbox from "@mui/material/Checkbox";
+import Slider from "@mui/material/Slider";
+import Chip from "@mui/material/Chip";
+
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function Material() {
   return (
     <>
       <Stack direction="row" spacing={2}>
         <Button
-          color="secondary"
-          style={{ background: "#009688", color: "white" }}
+          color="primary"
           onClick={() => {
             alert("Clicked");
           }}
@@ -25,14 +27,18 @@ export default function Material() {
         <Button variant="outlined" color="error">
           Error
         </Button>
-
+        <Slider aria-label="Volume" />
+        <Stack direction="row" spacing={1}>
+          <Chip label="primary" color="primary" />
+          <Chip label="success" color="success" />
+        </Stack>
         <Checkbox {...label} />
       </Stack>
-      <Stack direction="row" spacing={2}>
+      {/* <Stack direction="row" spacing={2}>
         <Avatar>H</Avatar>
         <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
         <Avatar sx={{ bgcolor: deepPurple[500] }}>OP</Avatar>
-      </Stack>
+      </Stack> */}
     </>
   );
 }
