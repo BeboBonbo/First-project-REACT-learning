@@ -10,37 +10,19 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import CheckIcon from "@mui/icons-material/Check";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 
-import { useContext } from "react";
-import { todosContext } from "../contexts/todosContext";
-import { toastContext, useToast } from "../contexts/toastContext";
-// DIALOG impots
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import TextField from "@mui/material/TextField";
+import { useToast } from "../contexts/toastContext";
+import { useTodosDispatch } from "../contexts/todosContext";
+import { toastContext } from "../contexts/toastContext";
 
 export default function Todo({ todo, showDelete, showUpdate }) {
-  const [updatedTodo, setUpdatedTodo] = useState({
-    title: todo.title,
-    details: todo.details,
-  });
-  const { todos, setTodos } = useContext(todosContext);
+  const dispatch = useTodosDispatch();
   const { showHideToast } = useToast();
   // const { showHideToast } = useContext(toastContext);
 
   // EVENT HANDLERS
   function handleCheckClick() {
-    const updatedTodos = todos.map((t) => {
-      if (t.id == todo.id) {
-        t.isCompleted = !t.isCompleted;
-      }
-      return t;
-    });
-    setTodos(updatedTodos);
-    localStorage.setItem("todos", JSON.stringify(updatedTodos));
-    showHideToast("تم التعديل بنجاح")
+    dispatch({ type: "toggleCompleted", payload: todo });
+    showHideToast("تم التعديل بنجاح");
   }
 
   function handleDeleteClick() {

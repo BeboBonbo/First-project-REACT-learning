@@ -18,9 +18,12 @@ import FormatAlignJustifyIcon from "@mui/icons-material/FormatAlignJustify";
 // COMPONENTS:-
 import Todo from "./Todo";
 // OTHERS:-
-import { todosContext } from "../contexts/todosContext";
-import { useContext, useState, useEffect, useMemo } from "react";
+import { useTodosDispatch } from "../contexts/todosContext";
+import { useTodos } from "../contexts/todosContext";
+import { useState, useEffect, useMemo, useReducer } from "react";
 import { useToast } from "../contexts/toastContext";
+import Todosreducer from "../reducers/todosReducer";
+
 // DIALOG impots
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -29,8 +32,11 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 // import TextField from "@mui/material/TextField";
 
+
 export default function TodoList() {
-  const { todos, setTodos } = useContext(todosContext);
+
+  const todos = useTodos();
+  const dispatch = useTodosDispatch();
   const { showHideToast } = useToast();
 
   const [titleInput, setTitleInput] = useState("");
@@ -64,9 +70,7 @@ export default function TodoList() {
   }
 
   useEffect(() => {
-    console.log("calling use effect");
-    const storageTodos = JSON.parse(localStorage.getItem("todos"));
-    setTodos(storageTodos || []);
+    dispatch({type: "get"})
   }, []);
 
   // EVENT HANDLERS
@@ -75,16 +79,7 @@ export default function TodoList() {
   }
 
   function handleAddClick() {
-    const newTodo = {
-      id: uuidv4(),
-      title: titleInput,
-      details: "",
-      isCompleted: false,
-    };
-
-    const updatedTodos = [...todos, newTodo];
-    setTodos(updatedTodos);
-    localStorage.setItem("todos", JSON.stringify(updatedTodos));
+    dispatch({type: "added", payload: {newTitle: titleInput} })
     setTitleInput("");
     showHideToast("تمت الإضافة بنجاح");
   }
@@ -104,11 +99,7 @@ export default function TodoList() {
   }
 
   function handleDeleteConfirm() {
-    const updatedTodos = todos.filter((t) => {
-      return t.id != dialogTodo.id;
-    });
-    setTodos(updatedTodos);
-    localStorage.setItem("todos", JSON.stringify(updatedTodos));
+    dispatch({type: "deleted", payload: dialogTodo});    
     setShowDeleteDialog(false);
     showHideToast("تم الحذف بنجاح");
   }
@@ -118,17 +109,9 @@ export default function TodoList() {
   }
 
   function handleUpdateConfirm() {
-    const updatedTodos = todos.map((t) => {
-      if (t.id == dialogTodo.id) {
-        return { ...t, title: dialogTodo.title, details: dialogTodo.details };
-      } else {
-        return t;
-      }
-    });
-    setTodos(updatedTodos);
+    dispatch({type: "updated", payload: dialogTodo})
     setShowUpdateDialog(false);
-    localStorage.setItem("todos", JSON.stringify(updatedTodos));
-    showHideToast("تم التحديث بنجاح")
+    showHideToast("تم التحديث بنجاح");
   }
 
   const todoJsx = todosToBeRendered.map((t) => {
