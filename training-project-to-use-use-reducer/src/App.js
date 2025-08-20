@@ -9,7 +9,7 @@ function App() {
   const [secondNumberInput, setSecondNumberInput] = useState(null);
   const [result, setResult] = useState(null);
 
-  const [result2, dispatch] = useReducer(resultReducer, 10);
+  const [result2, dispatch] = useReducer(resultReducer, null);
 
   // EVENT HANDLERS
   function handleSumClick() {
