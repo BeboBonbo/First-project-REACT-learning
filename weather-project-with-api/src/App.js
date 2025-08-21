@@ -13,6 +13,11 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CloudIcon from "@mui/icons-material/Cloud";
 import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+
+import { useSelector, useDispatch } from "react-redux";
+import { changeResult } from "./weatherApiSlice";
+import { fetchWeather } from "./weatherApiSlice";
 
 moment.locale("ar");
 
@@ -25,19 +30,21 @@ const theme = createTheme({
 let cancelAxios = null;
 
 function App() {
+  const dispatch = useDispatch();
+
+  const isLoading = useSelector((state) => {
+    return state.weather.isLoading;
+  });
+  const temp = useSelector((state) => {
+    return state.weather.weather;
+  });
+
   const { t, i18n } = useTranslation();
 
   const [locale, setLocale] = useState("ar");
 
   const [dateAndTime, setDateAndTime] = useState("");
-  const [temp, setTemp] = useState({
-    number: null,
-    description: "",
-    min: null,
-    max: null,
-    icon: null,
-  });
-  const direction = locale === "ar" ? "rtl" : "ltr"
+  const direction = locale === "ar" ? "rtl" : "ltr";
 
   function handleLanguageClick() {
     if (locale === "en") {
@@ -53,41 +60,12 @@ function App() {
   }
 
   useEffect(() => {
-    i18n.changeLanguage("ar");
-    setDateAndTime(moment().format("MMMM Do YYYY, h:mm:ss a"));
+    dispatch(fetchWeather());
 
-    axios
-      .get(
-        "https://api.openweathermap.org/data/2.5/weather?lat=31.2156&lon=29.9553&appid=3d1ebf7cc819e5245241f1b7f8bdfb79",
-        {
-          cancelToken: new axios.CancelToken((c) => {
-            cancelAxios = c;
-          }),
-        }
-      )
-      .then(function (response) {
-        // handle success
-        const responseTemp = Math.round(response.data.main.temp - 272.15);
-        const min = Math.round(response.data.main.temp_min - 272.15);
-        const max = Math.round(response.data.main.temp_max - 272.15);
-        const description = response.data.weather[0].description;
-        const responseIcon = response.data.weather[0].icon;
-        setTemp({
-          number: responseTemp,
-          min: min,
-          max: max,
-          description: description,
-          icon: `https://openweathermap.org/img/wn/${responseIcon}@2x.png`,
-        });
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      });
-    return () => {
-      console.log("canceling");
-      cancelAxios();
-    };
+    // dispatch(changeResult());
+
+    i18n.changeLanguage(locale);
+    setDateAndTime(moment().format("MMMM Do YYYY, h:mm:ss a"));
   }, []);
   return (
     <div className="App">
@@ -146,6 +124,12 @@ function App() {
                         justifyContent: "center",
                       }}
                     >
+                      {isLoading ? (
+                        <CircularProgress style={{ color: "white" }} />
+                      ) : (
+                        ""
+                      )}
+
                       <Typography variant="h1" style={{ textAlign: "right" }}>
                         {temp.number}
                       </Typography>
